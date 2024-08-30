@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "foss-build"
+version = "0.1.0"
+description = ""
+authors = ["Philip Dye <phdye@acm.org>"]
+readme = "README.md"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+docopt-ng = "^0.9.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.2"
+black = "^24.8.0"
+autoflake = "^2.3.1"
+isort = "^5.13.2"
+
+[tool.poetry.scripts]
+foss-build = "foss_build:app.main"
