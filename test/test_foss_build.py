@@ -91,8 +91,10 @@ class TestFossBuild(unittest.TestCase):
     @patch("pathlib.Path.touch", autospec=True)
     @patch("pathlib.Path.exists", autospec=True)
     @patch("os.getenv", autospec=True)
-    # @patch('docopt') -- simply does not work
-    def test_main(self, mock_getenv, mock_exists, mock_touch, mock_run_steps):
+    @patch("foss_build.app.docopt", autospec=True)
+    def test_main(
+        self, mock_docopt, mock_getenv, mock_exists, mock_touch, mock_run_steps
+    ):
         """Test the main function for handling arguments and environment."""
         mock_getenv.side_effect = lambda var, default=None: {
             "PARALLEL": "4",
@@ -100,6 +102,12 @@ class TestFossBuild(unittest.TestCase):
         }.get(var, default)
         mock_exists.return_value = False
         mock_run_steps.return_value = None
+
+        mock_docopt.return_value = {
+            "--large": True,
+            "--no-sudo": False,
+            "<command>": [],
+        }
 
         with patch("builtins.open", mock_open()):
             main(argv=["--large"])

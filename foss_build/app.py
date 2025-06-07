@@ -2,7 +2,7 @@
 foss-build
 
 USAGE:
-  foss-build [options] [commands]
+  foss-build [options] [<command>...]
 
 Unattended build and install of FOSS packages which use the standard sequence:
     autoconf, configure, make, make test, make install
@@ -82,8 +82,8 @@ def main(argv=sys.argv) -> None:
         Path(".no-sudo").touch(exist_ok=True)
 
     steps: List[str] = (
-        args["commands"]
-        if args["commands"]
+        args["<command>"]
+        if args["<command>"]
         else ["autoconf", "configure", "build", "test", "install"]
     )
 
