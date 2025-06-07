@@ -1,2 +1,2 @@
-docopt==0.6.2 ; python_version >= "3.9" and python_version < "4.0" \
-    --hash=sha256:49b3a825280bd66b3aa83585ef59c4a8c82f2c8a522dbe754a8bc8d08c85c491
+docopt-ng==0.9.0 ; python_version >= "3.9" and python_version < "4.0" \
+    --hash=sha256:bfe4c8b03f9fca424c24ee0b4ffa84bf7391cb18c29ce0f6a8227a3b01b81ff9
