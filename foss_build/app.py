@@ -59,10 +59,12 @@ def log(message: str) -> None:
     logger.info(message)
 
 
-def main(argv=sys.argv) -> None:
+def main(argv=None) -> None:
     """Main entry point for the script."""
+    if argv is None:
+        argv = sys.argv[1:]
     # Parse arguments with docopt
-    args = docopt(argv=argv, docstring=__doc__)
+    args = docopt(__doc__, argv=argv)
 
     # Check environment variables
     parallel: int = int(os.getenv("PARALLEL", DEFAULT_PARALLEL))
@@ -240,7 +242,7 @@ def run_command(command: List[str], log_dir: Path) -> int:
             command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True
         )
         for line in process.stdout:
-            log(line.strip(), raw_log_file)
+            log(line.strip())
             raw_log.write(line)
 
     # Wait for process to finish and capture the exit code
